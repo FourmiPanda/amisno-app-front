@@ -14,6 +14,9 @@ import { ViewerComponent } from './dashboard/viewer/viewer.component';
 import { ViewerCartComponent } from './dashboard/viewer/viewer-cart/viewer-cart.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from "@angular/material/list";
+import { ViewerProductsItemComponent } from './dashboard/viewer/viewer-products/viewer-products-item/viewer-products-item.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import {MatListModule} from "@angular/material/list";
     DashboardComponent,
     ViewerProductsComponent,
     ViewerComponent,
-    ViewerCartComponent
+    ViewerCartComponent,
+    ViewerProductsItemComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import {MatListModule} from "@angular/material/list";
     MatButtonModule,
     MatSidenavModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

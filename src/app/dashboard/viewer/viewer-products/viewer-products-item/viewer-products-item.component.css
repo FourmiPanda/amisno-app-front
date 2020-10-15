@@ -1,0 +1,14 @@
+.productView {
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.card {
+  max-width: 300px;
+  margin-bottom: 15px;
+  float: left;
+  margin-right: 15px;
+}
