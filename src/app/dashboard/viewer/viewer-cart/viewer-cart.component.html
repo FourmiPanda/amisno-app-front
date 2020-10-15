@@ -1,0 +1,34 @@
+<div style="width: 500px; height: 400px">
+  <h1>Your cart</h1>
+  <mat-list id="step1-list" style="height: 250px; overflow: auto; margin: 10px">
+    <mat-list-item *ngFor="let item of cart; let i = index;">
+
+      <h3 matLine class="pull-left" [innerHTML]="item.name"></h3>
+
+      <span style="padding-right: 15px">{{item.prix.toFixed(2)}}€</span><br/>
+      <button class="qty-btn" mat-icon-button
+              (click)="updateQuantity(i, 1)">+
+      </button>
+      <span style="width : 30px;float: right; border : none;text-align: center;"><b>{{item.count}}</b></span>
+      <button class="qty-btn" mat-icon-button
+              (click)="updateQuantity(i , -1)">-
+      </button>
+
+      <button class="pull-right" mat-icon-button (click)="removeItem(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <mat-divider></mat-divider>
+
+
+    </mat-list-item>
+  </mat-list>
+  <div>
+    <p>
+      Total HT : {{totalPrice.toFixed(2)}} € <br/>
+      TVA : {{(totalPrice*0.2).toFixed(2)}}€<br/>
+    </p>
+    <b>Total TTC :  {{(totalPrice*1.2).toFixed(2)}} € </b><br/>
+    <small> Hors frais de transport </small>
+  </div>
+</div>

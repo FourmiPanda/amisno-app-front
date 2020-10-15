@@ -1,0 +1,18 @@
+<div style="height: 100vh">
+  <mat-drawer-container class="example-container" style="height: 100%">
+    <mat-drawer #drawer mode="side" style="width: 200px">I'm a drawer</mat-drawer>
+    <mat-drawer-content>
+      <mat-toolbar color="primary">
+        <button mat-icon-button (click)="drawer.toggle()"
+                class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>My App</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button (click)="openCart()" class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </mat-toolbar>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
