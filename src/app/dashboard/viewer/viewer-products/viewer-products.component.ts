@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Product} from '../../../shared/model/product.model';
+import {MatDrawer} from '@angular/material/sidenav';
+import {CartService} from "../../../webservices/cart.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-viewer-products',
@@ -6,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viewer-products.component.css']
 })
 export class ViewerProductsComponent implements OnInit {
+  @ViewChild('drawer') drawerRef: MatDrawer;
+
+  selectedProduct: Product;
 
   products = [{
     name: 'Iphone 12',
@@ -24,9 +31,20 @@ export class ViewerProductsComponent implements OnInit {
     prix: 13574
   }];
 
-  constructor() { }
+  constructor(private cartService: CartService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
+  selectProduct(event): void {
+    this.selectedProduct = event;
+    this.drawerRef.open();
+  }
+
+  addToCart(selectedProduct: Product): void {
+    this.cartService.addToCart(selectedProduct, 1);
+    this.snackBar.open('Add to cart !', null, {
+      duration: 2000,
+    });
+  }
 }

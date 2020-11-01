@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-class Article {
-  name: string;
-  prix: number;
-  count: number;
-}
+import {Item} from '../../../shared/model/item.model';
+import {CartService} from '../../../webservices/cart.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-viewer-cart',
@@ -13,72 +10,31 @@ class Article {
 })
 export class ViewerCartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
-  cart: Article[] = [{
-    name: 'Iphone 12',
-    prix: 1922,
-    count: 1
-  }, {
-    name: 'Iphone 12 mini',
-    prix: 1722,
-    count: 1
-  }, {
-    name: 'Iphone 12 Pro',
-    prix: 3456,
-    count: 1
-  }, {
-    name: 'Iphone 12 mini',
-    prix: 1722,
-    count: 1
-  }, {
-    name: 'Iphone 12 Pro',
-    prix: 3456,
-    count: 1
-  }, {
-    name: 'Iphone 12 mini',
-    prix: 1722,
-    count: 1
-  }, {
-    name: 'Iphone 12 Pro',
-    prix: 3456,
-    count: 1
-  }, {
-    name: 'Iphone 12 mini',
-    prix: 1722,
-    count: 1
-  }, {
-    name: 'Iphone 12 Pro',
-    prix: 3456,
-    count: 1
-  }];
+  cart: Item[];
+
+  cartUpdatedSubject: Subject<any>;
 
   totalPrice = 0;
 
 
   ngOnInit(): void {
-    this.updateTotalPrice();
+    this.cart = this.cartService.getCart();
+    this.totalPrice = this.cartService.getTotal();
+    this.cartUpdatedSubject = this.cartService.getCartUpdatedSubject();
+    this.cartUpdatedSubject.subscribe(() => {
+      this.totalPrice = this.cartService.getTotal();
+    });
   }
 
   removeItem(index: number): void {
-    this.cart.splice(index, 1);
+    this.cartService.removeItem(index);
   }
 
   updateQuantity(i: number, q: number): void {
-    if (this.cart[i].count + q <= 0) {
-      this.removeItem(i);
-      this.updateTotalPrice();
-      return;
-    }
-    this.cart[i].count += q;
-    this.updateTotalPrice();
+    this.cartService.updateQuantity(i, q);
   }
 
-  updateTotalPrice(): void {
-    let price = 0;
-    this.cart.forEach((i) => {
-      price += i.count * i.prix;
-    });
-    this.totalPrice = price;
-  }
+
 }

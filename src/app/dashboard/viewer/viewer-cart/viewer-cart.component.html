@@ -3,13 +3,13 @@
   <mat-list id="step1-list" style="height: 250px; overflow: auto; margin: 10px">
     <mat-list-item *ngFor="let item of cart; let i = index;">
 
-      <h3 matLine class="pull-left" [innerHTML]="item.name"></h3>
+      <h3 matLine class="pull-left" [innerHTML]="item.product.name"></h3>
 
-      <span style="padding-right: 15px">{{item.prix.toFixed(2)}}€</span><br/>
+      <span style="padding-right: 15px">{{item.product.prix.toFixed(2)}}€</span><br/>
       <button class="qty-btn" mat-icon-button
               (click)="updateQuantity(i, 1)">+
       </button>
-      <span style="width : 30px;float: right; border : none;text-align: center;"><b>{{item.count}}</b></span>
+      <span style="width : 30px;float: right; border : none;text-align: center;"><b>{{item.quantity}}</b></span>
       <button class="qty-btn" mat-icon-button
               (click)="updateQuantity(i , -1)">-
       </button>

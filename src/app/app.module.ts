@@ -17,6 +17,7 @@ import {MatListModule} from "@angular/material/list";
 import { ViewerProductsItemComponent } from './dashboard/viewer/viewer-products/viewer-products-item/viewer-products-item.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MatDialogModule,
     MatListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
