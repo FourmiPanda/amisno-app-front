@@ -1,14 +1,33 @@
-.productView {
-  position: absolute;
-  width: 10px;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
 
 .card {
   max-width: 300px;
+  max-height: 300px;
   margin-bottom: 15px;
   float: left;
   margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.productView {
+  display: flex;
+  flex-direction: row;
+}
+
+.productDetail {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.mat-card-footer {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  align-self: flex-end;
+}
+
+img {
+  max-width:  200px;
+  max-height:  100px;
 }

@@ -1,6 +1,6 @@
-import {Product} from './product.model';
+import {PhoneModel} from './phone.model';
 
 export class Item {
-  product: Product;
+  product: PhoneModel;
   quantity: number;
 }

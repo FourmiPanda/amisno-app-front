@@ -1,23 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { ViewerProductsComponent } from './dashboard/viewer/viewer-products/viewer-products.component';
-import { ViewerComponent } from './dashboard/viewer/viewer.component';
-import { ViewerCartComponent } from './dashboard/viewer/viewer-cart/viewer-cart.component';
+import {ViewerProductsComponent} from './dashboard/viewer/viewer-products/viewer-products.component';
+import {ViewerComponent} from './dashboard/viewer/viewer.component';
+import {ViewerCartComponent} from './dashboard/viewer/viewer-cart/viewer-cart.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatListModule} from "@angular/material/list";
-import { ViewerProductsItemComponent } from './dashboard/viewer/viewer-products/viewer-products-item/viewer-products-item.component';
-import {MatCardModule} from "@angular/material/card";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatListModule} from '@angular/material/list';
+import {ViewerProductsItemComponent} from './dashboard/viewer/viewer-products/viewer-products-item/viewer-products-item.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatRippleModule} from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     ViewerProductsComponent,
     ViewerComponent,
     ViewerCartComponent,
-    ViewerProductsItemComponent
+    ViewerProductsItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +43,12 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatSnackBarModule
+    HttpClientModule,
+    MatRippleModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

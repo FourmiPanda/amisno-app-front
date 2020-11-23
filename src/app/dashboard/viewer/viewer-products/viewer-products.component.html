@@ -2,7 +2,7 @@
   <mat-drawer #drawer mode="side" position="end" style="width: 300px">
     <div *ngIf="selectedProduct">
       <h1>{{selectedProduct.name}}</h1>
-      <h3>{{selectedProduct.prix}}</h3>
+      <h3>{{selectedProduct.price}}</h3>
 
       <button mat-icon-button (click)="addToCart(selectedProduct)">
         <mat-icon>shopping_cart</mat-icon>
