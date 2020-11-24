@@ -1,14 +1,22 @@
 <mat-card matRipple matRippleColor="rgb(218, 108, 106,0.1)" class="card" style="height: 120px; width: 200px;"
           (click)="showProductDetails(product)">
-  <div class="productView" [style]="'background-color: #'+(product.prix * 123456789).toString().slice(5,8)"></div>
-  <mat-card-header>
-    <mat-card-title style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+  <div class="productView" [style]="'background-color: #'+(product.price * 123456789).toString().slice(5,8)">
+    <img [src]=product.img alt="no_image"></div>
+  <div class="productDetail">
+
+    <mat-card-header>
+      <mat-card-title style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
       <span>
         {{product.name}}
       </span>
-    </mat-card-title>
-    <mat-card-subtitle style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-      {{product.prix}} €
-    </mat-card-subtitle>
-  </mat-card-header>
+      </mat-card-title>
+      <mat-card-subtitle style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+        {{product.price}} €
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-footer>
+      {{product.status}}
+    </mat-card-footer>
+  </div>
 </mat-card>

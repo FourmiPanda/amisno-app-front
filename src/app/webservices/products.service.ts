@@ -1,14 +1,28 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {PhoneModel} from '../shared/model/phone.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private http: HttpClient) { }
+  private phonesSubject = new BehaviorSubject([]);
+
+  constructor(private http: HttpClient) {
+    const httpGet = http.get<PhoneModel[]>('http://localhost:8090/v2/phone', ).subscribe((res: PhoneModel[]) => {
+      this.phonesSubject.next(res);
+      httpGet.unsubscribe();
+    });
+  }
+
+  getPhones = (): BehaviorSubject<PhoneModel[]> => {
+    return this.phonesSubject;
+  }
+
 
   getAll(criteria, page): Observable<any> {
     let url = environment.api.products.url + '/mission?';

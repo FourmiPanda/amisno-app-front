@@ -1,8 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Product} from '../../../shared/model/product.model';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDrawer} from '@angular/material/sidenav';
-import {CartService} from "../../../webservices/cart.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {CartService} from '../../../webservices/cart.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ProductsService} from '../../../webservices/products.service';
+import {PhoneModel} from '../../../shared/model/phone.model';
 
 @Component({
   selector: 'app-viewer-products',
@@ -12,36 +13,25 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ViewerProductsComponent implements OnInit {
   @ViewChild('drawer') drawerRef: MatDrawer;
 
-  selectedProduct: Product;
+  selectedProduct: PhoneModel;
+  products: PhoneModel[] = [];
 
-  products = [{
-    name: 'Iphone 12',
-    prix: 854
-  }, {
-    name: 'Iphone 12 Max',
-    prix: 1269
-  }, {
-    name: 'Iphone 12 Mini',
-    prix: 6487
-  }, {
-    name: 'Iphone 12 Pro',
-    prix: 5562
-  }, {
-    name: 'Iphone 12 SE',
-    prix: 13574
-  }];
-
-  constructor(private cartService: CartService, public snackBar: MatSnackBar) { }
+  constructor(private cartService: CartService, public snackBar: MatSnackBar, private productS: ProductsService) {
+  }
 
   ngOnInit(): void {
+    this.productS.getPhones().subscribe((res: PhoneModel[]) => this.setProducts(res));
   }
+
+  getProducts = () => this.products;
+  setProducts = (products: PhoneModel[]) => this.products = products;
 
   selectProduct(event): void {
     this.selectedProduct = event;
     this.drawerRef.open();
   }
 
-  addToCart(selectedProduct: Product): void {
+  addToCart(selectedProduct: PhoneModel): void {
     this.cartService.addToCart(selectedProduct, 1);
     this.snackBar.open('Add to cart !', null, {
       duration: 2000,

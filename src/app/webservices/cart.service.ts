@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import {Product} from '../shared/model/product.model';
+import {Injectable} from '@angular/core';
 import {Item} from '../shared/model/item.model';
 import {Subject} from 'rxjs';
+import {PhoneModel, Status} from '../shared/model/phone.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,56 +11,74 @@ export class CartService {
   private cart: Item[] = [
     {
       product: {
+        id: 1,
         name: 'Iphone 12',
-        prix: 1922,
+        price: 1922,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 2,
         name: 'Iphone 12 mini',
-        prix: 1722
+        price: 1722,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 3,
         name: 'Iphone 12 Pro',
-        prix: 3456
+        price: 3456,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 4,
         name: 'Iphone 12 mini',
-        prix: 1722
+        price: 1722,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 5,
         name: 'Iphone 12 Pro',
-        prix: 3456
+        price: 3456,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 6,
         name: 'Iphone 12 mini',
-        prix: 1722
+        price: 1722,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 7,
         name: 'Iphone 12 Pro',
-        prix: 3456
+        price: 3456,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 8,
         name: 'Iphone 12 mini',
-        prix: 1722
+        price: 1722,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }, {
       product: {
+        id: 9,
         name: 'Iphone 12 Pro',
-        prix: 3456
+        price: 3456,
+        status: Status.AVAILABLE,
       },
       quantity: 1
     }
@@ -74,7 +92,7 @@ export class CartService {
 
   constructor() { }
 
-  addToCart(p: Product, q: number): void {
+  addToCart(p: PhoneModel, q: number): void {
     const index = this.cart.findIndex(i => i.product.name === p.name);
     if (index !== -1) {
       return this.updateQuantity(index, q);
@@ -111,7 +129,7 @@ export class CartService {
   getTotal(): number {
     let total = 0;
     this.cart.forEach((i) => {
-      total += i.quantity * i.product.prix;
+      total += i.quantity * i.product.price;
     });
     return total;
   }
